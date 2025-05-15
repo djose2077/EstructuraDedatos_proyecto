@@ -41,6 +41,7 @@ public class VisualizacionTSP extends JPanel {
         int height = getHeight() - 2 * margin - 180;
 
         // Dibujar las ciudades y el recorrido
+        g2.setFont(new Font("Arial", Font.PLAIN, 13)); // Fuente más pequeña para los nombres
         for (int i = 0; i < recorrido.size(); i++) {
             Ciudad c = recorrido.get(i);
             int x = margin + (int) ((c.getLongitud() - minLon) / (maxLon - minLon) * width);
@@ -54,8 +55,11 @@ public class VisualizacionTSP extends JPanel {
                 g2.setColor(Color.RED);
                 g2.fillOval(x - 7, y - 7, 14, 14);
             }
+            // Dibuja el nombre con desplazamiento alternado para evitar amontonamiento
             g2.setColor(Color.BLACK);
-            g2.drawString((i + 1) + ". " + c.getNombre(), x + 12, y - 8);
+            int dx = 12;
+            int dy = (i % 2 == 0) ? -10 : 20;
+            g2.drawString((i + 1) + ". " + c.getNombre(), x + dx, y + dy);
 
             // Dibujar línea al siguiente
             if (i < recorrido.size() - 1) {
@@ -89,18 +93,21 @@ public class VisualizacionTSP extends JPanel {
         // Mostrar recorrido óptimo en varias líneas si es necesario
         g2.setFont(new Font("Arial", Font.BOLD, 20));
         g2.drawString("Recorrido óptimo:", 60, yDatos + 100);
+
+        // Construye el recorrido como texto largo
         StringBuilder recorridoStr = new StringBuilder();
         for (Ciudad c : recorrido) {
             recorridoStr.append(c.getNombre()).append(" -> ");
         }
         recorridoStr.append(recorrido.get(0).getNombre());
 
-        // Dividir el recorrido en varias líneas si es muy largo y evitar cortar nombres
+        // Divide el texto en líneas de máximo 70 caracteres (puedes ajustar)
         String recorridoCompleto = recorridoStr.toString();
-        int maxLineLength = 70; // caracteres por línea
+        int maxLineLength = 70;
         int yLinea = yDatos + 130;
         while (recorridoCompleto.length() > 0) {
             int corte = Math.min(maxLineLength, recorridoCompleto.length());
+            // Busca el último "->" antes del corte para no cortar nombres
             if (corte < recorridoCompleto.length()) {
                 int ultimoGuion = recorridoCompleto.lastIndexOf("->", corte);
                 if (ultimoGuion > 0) corte = ultimoGuion + 2;
@@ -108,7 +115,7 @@ public class VisualizacionTSP extends JPanel {
             String linea = recorridoCompleto.substring(0, corte).trim();
             g2.drawString(linea, 60, yLinea);
             recorridoCompleto = recorridoCompleto.substring(corte).trim();
-            yLinea += 26;
+            yLinea += 26; // Salto de línea
         }
     }
 

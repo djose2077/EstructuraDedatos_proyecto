@@ -100,6 +100,14 @@ public class App {
         // Ejecuta el algoritmo de fuerza bruta para TSP
         FuerzaBrutaTSP tsp = new FuerzaBrutaTSP(grafo);
         tsp.resolver();
+       
+            // Después de resolver el TSP y antes o después de mostrar la ventana:
+            System.out.println("Recorrido óptimo:");
+            for (Ciudad c : tsp.getMejorRecorrido()) {
+                System.out.print(c.getNombre() + " -> ");
+            }
+            System.out.println(tsp.getMejorRecorrido().get(0).getNombre()); // Regreso al inicio
+            
 
         long fin = System.currentTimeMillis();
         double tiempoSegundos = (fin - inicio) / 1000.0;
