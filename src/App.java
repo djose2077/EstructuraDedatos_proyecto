@@ -54,14 +54,16 @@ public class App {
         // Si no se cargó archivo o está vacío, usa las ciudades por defecto
         if (ciudades == null || ciudades.isEmpty()) {
             ciudades = new ArrayList<>();
-            ciudades.add(new Ciudad(0, "Ciudad de México", 19.4326, -99.1332));
-            ciudades.add(new Ciudad(1, "Guadalajara", 20.6597, -103.3496));
-            ciudades.add(new Ciudad(2, "Monterrey", 25.6866, -100.3161));
-            ciudades.add(new Ciudad(3, "Puebla", 19.0414, -98.2063));
-            ciudades.add(new Ciudad(4, "Tijuana", 32.5149, -117.0382));
-            ciudades.add(new Ciudad(5, "Mérida", 20.9674, -89.5926));
-            ciudades.add(new Ciudad(6, "León", 21.1619, -101.6860));
-            ciudades.add(new Ciudad(7, "Querétaro", 20.5888, -100.3899));
+            ciudades.add(new Ciudad(0, "casa de jose", 4.719242942501458, -74.11481656215521));
+            ciudades.add(new Ciudad(1, "paradero trasmi calle", 4.7193619773037865, -74.11925989785547));
+            ciudades.add(new Ciudad(2, "puente peatonal", 4.716945402842471, -74.11713175741801));
+            ciudades.add(new Ciudad(3, "portal 80 trasmi", 4.709538972980764, -74.11015692327217));
+            ciudades.add(new Ciudad(4, "c.c titan plaza", 4.694751110938354, -74.08623860391714));
+            ciudades.add(new Ciudad(5, "home center calle 80", 4.685166474163679, -74.078824930475));
+            ciudades.add(new Ciudad(6, "Estacion trasmilenio polo", 4.6710401275652345, -74.06461812389809));
+            ciudades.add(new Ciudad(7, "universiad EAN", 4.663371759039043, -74.05519642175759));
+            ciudades.add(new Ciudad(8, "POLITECNICO GRANCOLOMBIANO", 4.646487535518864, -74.06136201675788));
+            ciudades.add(new Ciudad(9, "UNIVERSIDAD NACIONAL", 4.636062494910521, -74.0827395851142));
         }
 
         // Advierte si hay muchas ciudades (el algoritmo puede tardar mucho)
@@ -100,8 +102,8 @@ public class App {
         // Ejecuta el algoritmo de fuerza bruta para TSP
         FuerzaBrutaTSP tsp = new FuerzaBrutaTSP(grafo);
         tsp.resolver();
-       
-            // Después de resolver el TSP y antes o después de mostrar la ventana:
+
+            
             System.out.println("Recorrido óptimo:");
             for (Ciudad c : tsp.getMejorRecorrido()) {
                 System.out.print(c.getNombre() + " -> ");

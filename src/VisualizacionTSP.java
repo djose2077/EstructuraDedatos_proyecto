@@ -84,7 +84,8 @@ public class VisualizacionTSP extends JPanel {
         g2.setColor(Color.BLACK);
         int yDatos = getHeight() - 160;
         g2.setFont(new Font("Arial", Font.BOLD, 22));
-        g2.drawString("Cantidad de ciudades: " + recorrido.size(), 60, yDatos);
+        // Cambia "Cantidad de ciudades" por "Cantidad de puntos de interés"
+        g2.drawString("Cantidad de puntos de interés: " + recorrido.size(), 60, yDatos);
         g2.drawString(String.format("Distancia mínima: %.2f km", distancia), 60, yDatos + 30);
         g2.drawString("Rutas evaluadas: " + rutasEvaluadas, 60, yDatos + 60);
         g2.drawString(String.format("Tiempo de ejecución: %.3f segundos", tiempoSegundos), 400, yDatos + 30);
